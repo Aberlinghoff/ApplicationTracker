@@ -1,0 +1,17 @@
+# Virtual environment
+.venv/
+
+# Python
+__pycache__/
+*.py[oc]
+*.egg-info
+
+# Django
+*.sqlite3
+local_settings.py
+
+# Environment variables
+.env
+
+# IDE
+.idea/
