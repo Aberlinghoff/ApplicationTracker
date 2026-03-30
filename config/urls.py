@@ -16,9 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from applications.views import register
+from applications.views import register, JobApplicationListView, JobApplicationCreateView, JobApplicationUpdateView, \
+    JobApplicationDeleteView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/register/', register, name="register")
+    path('accounts/register/', register, name="register"),
+    path('applications/', JobApplicationListView.as_view(), name="application-list"),
+    path('applications/create/', JobApplicationCreateView.as_view(), name="application-create"),
+    path('applications/<int:pk>/update/', JobApplicationUpdateView.as_view(), name="application-update"),
+    path('applications/<int:pk>/delete/', JobApplicationDeleteView.as_view(), name="application-delete"),
+
 ]

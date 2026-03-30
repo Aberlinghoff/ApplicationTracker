@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>Tracked Applications</title>
+    </head>
+    <body>
+      {% for application in object_list %}
+      <div>
+          <p>{{ application.company_name }}</p>
+          <p>{{ application.job_title }}</p>
+          <p>{{ application.date_applied }}</p>
+          <p>{{ application.get_status_display }}</p>
+      </div>
+      {% endfor %}
+    </body>
+</html>

@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>Applications</title>
+
+    </head>
+    <body>
+    Confirm deletion of application?
+         <form method="POST" action="">
+            {% csrf_token %}
+            <button type="submit">Confirm</button>
+            <a href="/applications/">Cancel</a>
+        </form>
+
+    </body>
+
+
+</html>
