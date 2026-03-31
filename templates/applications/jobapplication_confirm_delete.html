@@ -4,7 +4,7 @@
 
     </head>
     <body>
-    Confirm deletion of application?
+    Confirm deletion of {{ object.company_name }}, {{ object.job_title }} from tracked applications?
          <form method="POST" action="">
             {% csrf_token %}
             <button type="submit">Confirm</button>

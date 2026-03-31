@@ -1,12 +1,26 @@
 <html>
     <head>
         <title>Applications</title>
+
+         <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background-color: lightgrey;
+            }
+        </style>
     </head>
     <body>
         <form method="POST" action="">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Track application</button>
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if object %}
+            <button type="submit">Update Application</button>
+        {% else %}
+            <button type="submit">Track Application</button>
+        {% endif %}
         </form>
     </body>
 </html>

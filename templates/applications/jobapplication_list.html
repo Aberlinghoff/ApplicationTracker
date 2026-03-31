@@ -1,15 +1,48 @@
 <html>
     <head>
         <title>Tracked Applications</title>
+
+         <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background-color: lightgrey;
+            }
+        </style>
     </head>
     <body>
-      {% for application in object_list %}
-      <div>
-          <p>{{ application.company_name }}</p>
-          <p>{{ application.job_title }}</p>
-          <p>{{ application.date_applied }}</p>
-          <p>{{ application.get_status_display }}</p>
-      </div>
-      {% endfor %}
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Company Name</th>
+                        <th>Job Title</th>
+                        <th>Date Applied</th>
+                        <th>Application Status</th>
+                        <th>Notes</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for application in object_list %}
+                    <tr>
+                        <td>{{ application.company_name }}</td>
+                        <td>{{ application.job_title }}</td>
+                        <td>{{ application.date_applied }}</td>
+                        <td>{{ application.get_status_display }}</td>
+                        <td>{{ application.notes }}</td>
+                        <td>
+                            <a href="/applications/{{ application.id }}/update/">Update</a>
+                            <a href="/applications/{{ application.id }}/delete/">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <a href="/applications/create/" style="display: block; text-align: center;">Track New Application</a>
+        </div>
     </body>
 </html>
