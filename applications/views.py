@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import JobApplication
 from django.urls import reverse_lazy
@@ -27,11 +28,13 @@ def register(request):
               )
 
 
-class JobApplicationListView(ListView):
+class JobApplicationListView(LoginRequiredMixin, ListView):
     model = JobApplication
 
+    def get_queryset(self):
+        return JobApplication.objects.filter(user=self.request.user)
 
-class JobApplicationCreateView(CreateView):
+class JobApplicationCreateView(LoginRequiredMixin, CreateView):
     form_class = JobApplicationForm
     model = JobApplication
     success_url = reverse_lazy("application-list")
@@ -41,12 +44,18 @@ class JobApplicationCreateView(CreateView):
         return super().form_valid(form)
 
 
-class JobApplicationUpdateView(UpdateView):
+class JobApplicationUpdateView(LoginRequiredMixin, UpdateView):
     form_class = JobApplicationForm
     model = JobApplication
     success_url = reverse_lazy("application-list")
 
+    def get_object(self):
+        return get_object_or_404(JobApplication, pk=self.kwargs["pk"], user=self.request.user)
 
-class JobApplicationDeleteView(DeleteView):
+
+class JobApplicationDeleteView(LoginRequiredMixin, DeleteView):
     model = JobApplication
     success_url = reverse_lazy("application-list")
+
+    def get_object(self):
+        return get_object_or_404(JobApplication, pk=self.kwargs["pk"], user=self.request.user)
