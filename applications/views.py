@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import JobApplication
 from django.urls import reverse_lazy
+from .forms import JobApplicationForm
 
 
 # Create your views here.
@@ -31,8 +32,8 @@ class JobApplicationListView(ListView):
 
 
 class JobApplicationCreateView(CreateView):
+    form_class = JobApplicationForm
     model = JobApplication
-    fields = ["company_name", "job_title", "date_applied", "status", "notes"]
     success_url = reverse_lazy("application-list")
 
     def form_valid(self, form):
@@ -41,8 +42,8 @@ class JobApplicationCreateView(CreateView):
 
 
 class JobApplicationUpdateView(UpdateView):
+    form_class = JobApplicationForm
     model = JobApplication
-    fields = ["company_name", "job_title", "date_applied", "status", "notes"]
     success_url = reverse_lazy("application-list")
 
 
