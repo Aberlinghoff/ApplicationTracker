@@ -4,6 +4,12 @@ A full-stack web application for tracking job applications through the hiring pr
 
 ---
 
+## Live Demo
+
+[View the live app](https://your-render-url.onrender.com/applications/)
+
+---
+
 ## Features
 
 - User registration and session-based authentication
